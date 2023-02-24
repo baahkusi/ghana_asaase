@@ -36,7 +36,7 @@ impl GhanaAsaase {
         self.reqire_admin();
         require!(
             !self.land_owner.contains_key(&land_address),
-            "Land is already owned by someone, cannot assing new ownership ..."
+            "Land is already owned by someone, cannot assign new ownership ..."
         );
         self.land_owner
             .insert(land_address.clone(), owner_id.clone());
