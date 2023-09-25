@@ -1,5 +1,6 @@
 type Owner @entity(immutable: true) {
   id: String!
+  lands: [Land!]! @derivedFrom(field: "owner")
 }
 
 type Land @entity(immutable: false) {

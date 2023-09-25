@@ -49,6 +49,10 @@ export class Owner extends Entity {
   set id(value: string) {
     this.set("id", Value.fromString(value));
   }
+
+  get lands(): LandLoader {
+    return new LandLoader("Owner", this.get("id")!.toString(), "lands");
+  }
 }
 
 export class Land extends Entity {
@@ -208,5 +212,23 @@ export class LandHistory extends Entity {
 
   set transactionHash(value: Bytes) {
     this.set("transactionHash", Value.fromBytes(value));
+  }
+}
+
+export class LandLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): Land[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<Land[]>(value);
   }
 }
