@@ -1,0 +1,17 @@
+type Owner @entity(immutable: true) {
+  id: String!
+}
+
+type Land @entity(immutable: true) {
+  id: String!
+  owner: Owner!
+}
+
+type LandHistory @entity(immutable: true) {
+  id: String! # Land.id.concat(Owner.id).concat(transactionHash.toHexString())
+  owner: Owner!
+  land: Land!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

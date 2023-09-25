@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: GhanaAsaase
+    network: mumbai
+    source:
+      address: "0xF65f5494e5e4D446ED18e4dc5455fDD4605B1E8E"
+      abi: GhanaAsaase
+      startBlock: 37509409
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ChangedLandOwner
+        - NewLandOwner
+      abis:
+        - name: GhanaAsaase
+          file: ./abis/GhanaAsaase.json
+      eventHandlers:
+        - event: ChangedLandOwner(string,string,string)
+          handler: handleChangedLandOwner
+        - event: NewLandOwner(string,string)
+          handler: handleNewLandOwner
+      file: ./src/ghana-asaase.ts
