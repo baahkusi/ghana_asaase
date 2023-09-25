@@ -44,5 +44,6 @@ function saveHistory(
   landHistory.blockTimestamp = event.block.timestamp;
   landHistory.land = land.id;
   landHistory.owner = land.owner;
+  landHistory.transactionHash = event.transaction.hash;
   landHistory.save();
 }
