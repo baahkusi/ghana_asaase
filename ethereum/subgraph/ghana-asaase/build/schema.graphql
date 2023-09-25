@@ -2,7 +2,7 @@ type Owner @entity(immutable: true) {
   id: String!
 }
 
-type Land @entity(immutable: true) {
+type Land @entity(immutable: false) {
   id: String!
   owner: Owner!
 }
